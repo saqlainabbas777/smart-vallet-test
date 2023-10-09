@@ -1,0 +1,7 @@
+{
+  "name": "smart-vallet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
