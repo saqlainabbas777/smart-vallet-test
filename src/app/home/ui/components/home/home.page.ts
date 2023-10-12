@@ -37,5 +37,4 @@ export class HomePage implements OnInit{
   onUpdate(): void {
     this.service.updateVehicle(this.addForm.value).subscribe(console.log);
   }
-
 }
