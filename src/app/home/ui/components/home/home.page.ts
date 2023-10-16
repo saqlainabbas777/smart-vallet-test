@@ -5,6 +5,7 @@ import {VehiclesService} from "../../../data/services/vehicles.service";
 import {VehicleMake} from "../../../data/models/vehicleMake";
 import {VehicleModel} from "../../../data/models/vehicleModel";
 import {HelperService} from "../../../data/services/helper.service";
+import {ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomePage implements OnInit{
   constructor(private fb: FormBuilder,
               private service: HomeService,
               private vehicleService: VehiclesService,
-              private helperService: HelperService
+              private helperService: HelperService,
+              private toastController: ToastController,
               ) {}
 
   ngOnInit() {
@@ -35,6 +37,15 @@ export class HomePage implements OnInit{
   }
 
   onUpdate(): void {
-    this.service.updateVehicle(this.addForm.value).subscribe(console.log);
+    this.service.updateVehicle(this.addForm.value).subscribe(async (res: any) => {
+      const toast = await this.toastController.create({
+        message: 'Vehicle Updated..',
+        duration: 1500,
+        position: 'bottom',
+        color: 'success'
+      });
+      await toast.present();
+      console.log('res', res);
+    });
   }
 }
